@@ -1,29 +1,24 @@
-def p1(n):
-    s = 0
+def solve(n):
+    p1, p2 = (0, 0)
     l = len(n)
     for i in range(l):
-        if n[i] == n[(i+1)%l]:
-            s += int(n[i])
-    return s
-
-def p2(n):
-    s = 0
-    l = len(n)
-    for i in range(l):
-        if n[i] == n[(i+l//2)%l]:
-            s += int(n[i])
-    return s
+        if n[i] == n[i-1]:
+            p1 += int(n[i])
+        if n[i] == n[i-l//2]:
+            p2 += int(n[i])
+    return (p1, p2)
 
 n = input()
-assert p1("1122") == 3
-assert p1("1111") == 4
-assert p1("1234") == 0
-assert p1("91212129") == 9
-assert p2("1212") == 6
-assert p2("1221") == 0
-assert p2("123425") == 4
-assert p2("123123") == 12
-assert p2("12131415") == 4
+assert solve("1122")[0] == 3
+assert solve("1111")[0] == 4
+assert solve("1234")[0] == 0
+assert solve("91212129")[0] == 9
+assert solve("1212")[1] == 6
+assert solve("1221")[1] == 0
+assert solve("123425")[1] == 4
+assert solve("123123")[1] == 12
+assert solve("12131415")[1] == 4
 
-print('p1:', p1(n))
-print('p2:', p2(n))
+p1, p2 = solve(n)
+print('p1:', p1)
+print('p2:', p2)
