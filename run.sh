@@ -1,7 +1,7 @@
 #!/bin/bash
 function run {
     echo day$1
-    python3 "$1/day$1.py" < "$1/input.txt"
+    cd $1 && python3 "day$1.py" < "input.txt" && cd ..
 }
 if [ -z "$1" ]
 then
